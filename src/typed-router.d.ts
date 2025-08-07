@@ -46,7 +46,7 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'src/pages/suppliers/[id].vue': {
-      routes: '/suppliers/[id]' | '/suppliers/[id]/' | '/suppliers/[id]/products/[[product]]+' | '/suppliers/[id]/results/[[version]]' | '/suppliers/[id]/products' | '/suppliers/[id]/results'
+      routes: '/suppliers/[id]' | '/suppliers/[id]/' | '/suppliers/[id]/products/[[product]]+' | '/suppliers/[id]/results/[[version]]'
       views: 'default'
     }
     'src/pages/suppliers/[id]/index.vue': {

@@ -1,0 +1,22 @@
+diff --git a/dist/src-BVnnbDr_.js b/dist/src-BVnnbDr_.js
+index 947ef66e9fe1a90bf87df9647788ec0c8e0b8562..11d5a8975594423c3dfe431275fca592e5d9db0d 100644
+--- a/dist/src-BVnnbDr_.js
++++ b/dist/src-BVnnbDr_.js
+@@ -670,13 +670,13 @@ ${code}
+ * Generate the route file info for a non-root node.
+ */
+ function generateRouteFileInfoLines(node, rootDir) {
+-	const children = node.children.size > 0 ? node.getChildrenDeepSorted() : null;
+-	const childrenNamedViews = children ? Array.from(new Set(children.flatMap((child) => Array.from(child.value.components.keys())))) : null;
+-	const routeNames = [node, ...node.getChildrenDeepSorted()].filter((node$1) => !!node$1.name).map((node$1) => node$1.name);
++	const deepChildren = node.children.size > 0 ? node.getChildrenDeepSorted() : null;
++	const deepChildrenNamedViews = deepChildren ? Array.from(new Set(deepChildren.flatMap((child) => Array.from(child.value.components.keys())))) : null;
++	const routeNames = [node, ...(deepChildren ?? [])].filter((node$1) => node$1.value.components.size > 0 && !!node$1.name).map((node$1) => node$1.name);
+ 	const currentRouteInfo = routeNames.length === 0 ? [] : Array.from(node.value.components.values()).map((file) => ({
+ 		key: relative(rootDir, file).replaceAll("\\", "/"),
+ 		routeNames,
+-		childrenNamedViews
++		childrenNamedViews: deepChildrenNamedViews
+ 	}));
+ 	const childrenRouteInfo = node.getChildrenSorted().flatMap((child) => generateRouteFileInfoLines(child, rootDir));
+ 	return currentRouteInfo.concat(childrenRouteInfo);
