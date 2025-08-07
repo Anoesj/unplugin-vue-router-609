@@ -34,6 +34,7 @@
     "unplugin-vue-components": "^28.8.0",
     "unplugin-vue-router": "patch:unplugin-vue-router@npm%3A0.15.0#~/.yarn/patches/unplugin-vue-router-npm-0.15.0-3553b12b9d.patch",
     "vite": "^6.3.5",
+    "vite-plugin-vue-devtools": "^8.0.0",
     "vite-plugin-vue-layouts-next": "^1.0.0",
     "vite-plugin-vuetify": "^2.1.2",
     "vue-router": "^4.5.1",
