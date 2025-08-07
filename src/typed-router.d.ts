@@ -19,7 +19,10 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
-    '/suppliers/[id]': RouteRecordInfo<'/suppliers/[id]', '/suppliers/:id', { id: ParamValue<true> }, { id: ParamValue<false> }, '/suppliers/[id]/results/[[version]]'>,
+    '/suppliers/': RouteRecordInfo<'/suppliers/', '/suppliers', Record<never, never>, Record<never, never>>,
+    '/suppliers/[id]': RouteRecordInfo<'/suppliers/[id]', '/suppliers/:id', { id: ParamValue<true> }, { id: ParamValue<false> }, '/suppliers/[id]/' | '/suppliers/[id]/products/[[product]]+' | '/suppliers/[id]/results/[[version]]'>,
+    '/suppliers/[id]/': RouteRecordInfo<'/suppliers/[id]/', '/suppliers/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/suppliers/[id]/products/[[product]]+': RouteRecordInfo<'/suppliers/[id]/products/[[product]]+', '/suppliers/:id/products/:product*', { id: ParamValue<true>, product?: ParamValueZeroOrMore<true> }, { id: ParamValue<false>, product?: ParamValueZeroOrMore<false> }>,
     '/suppliers/[id]/results/[[version]]': RouteRecordInfo<'/suppliers/[id]/results/[[version]]', '/suppliers/:id/results/:version?', { id: ParamValue<true>, version?: ParamValueZeroOrOne<true> }, { id: ParamValue<false>, version?: ParamValueZeroOrOne<false> }>,
   }
 
@@ -38,9 +41,21 @@ declare module 'vue-router/auto-routes' {
       routes: '/'
       views: never
     }
+    'src/pages/suppliers/index.vue': {
+      routes: '/suppliers/'
+      views: never
+    }
     'src/pages/suppliers/[id].vue': {
-      routes: '/suppliers/[id]' | '/suppliers/[id]/results/[[version]]' | '/suppliers/[id]/results'
+      routes: '/suppliers/[id]' | '/suppliers/[id]/' | '/suppliers/[id]/products/[[product]]+' | '/suppliers/[id]/results/[[version]]' | '/suppliers/[id]/products' | '/suppliers/[id]/results'
       views: 'default'
+    }
+    'src/pages/suppliers/[id]/index.vue': {
+      routes: '/suppliers/[id]/'
+      views: never
+    }
+    'src/pages/suppliers/[id]/products/[[product]]+.vue': {
+      routes: '/suppliers/[id]/products/[[product]]+'
+      views: never
     }
     'src/pages/suppliers/[id]/results/[[version]].vue': {
       routes: '/suppliers/[id]/results/[[version]]'
